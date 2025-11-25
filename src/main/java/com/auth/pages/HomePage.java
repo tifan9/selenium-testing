@@ -52,8 +52,16 @@ public HorizontalPage clickHorizontalSlider(){
         return new ContextMenuPage(driver);
     }
 
+    // Frames
+    public WysiwygEditorPage clickWysiwygEditor(){
+        clickLink("WYSIWYG Editor");
+        return new WysiwygEditorPage(driver);
+    }
 
-
+    public DynamicLoadingPage clickDynamicLoading(){
+        clickLink("Dynamic Loading");
+        return new DynamicLoadingPage(driver);
+    }
 
 // generic link to
     public void clickLink (String linkTest){

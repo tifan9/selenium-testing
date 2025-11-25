@@ -10,7 +10,9 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 
+import java.time.Duration;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class BaseTest {
     private WebDriver driver;
@@ -18,6 +20,8 @@ public class BaseTest {
     @BeforeClass
     public void setUp(){
         driver = new ChromeDriver();
+//        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+
         goHome();
 //        After opening the application instantiate the homepage
         homePage = new HomePage(driver);

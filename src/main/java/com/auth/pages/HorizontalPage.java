@@ -14,8 +14,9 @@ public class HorizontalPage {
     }
 
     public void setSliderValue(String value){
+        var find = driver.findElement(slider);
         while(!getSliderValue().equals(value)){
-            driver.findElement(slider).sendKeys(Keys.ARROW_RIGHT);
+            find.sendKeys(Keys.ARROW_RIGHT);
         }
     }
 
