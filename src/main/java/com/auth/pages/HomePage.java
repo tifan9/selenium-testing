@@ -62,6 +62,21 @@ public HorizontalPage clickHorizontalSlider(){
         clickLink("Dynamic Loading");
         return new DynamicLoadingPage(driver);
     }
+    // Javascript
+    public LargeDeepDomPage clickLargeDeepDom(){
+        clickLink("Large & Deep DOM");
+        return new LargeDeepDomPage(driver);
+    }
+    public InfiniteScrollPage clickInfiniteScroll(){
+        clickLink("Infinite Scroll");
+        return new InfiniteScrollPage(driver);
+    }
+
+    // Multiple windows
+    public MultipleWindowsPage clickMultipleWindows(){
+        clickLink("Multiple Windows");
+        return new MultipleWindowsPage(driver);
+    }
 
 // generic link to
     public void clickLink (String linkTest){
