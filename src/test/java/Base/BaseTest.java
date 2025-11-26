@@ -6,6 +6,7 @@ import com.auth.utils.WindowManager;
 import com.google.common.io.Files;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.events.EventFiringDecorator;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
@@ -26,19 +27,21 @@ public class BaseTest {
     protected HomePage homePage;
     @BeforeClass
     public void setUp() throws InterruptedException {
-        WebDriver rawDriver = new ChromeDriver();
+        WebDriver rawDriver = new ChromeDriver(getChromeOptions());
         // wrap driver with EventFiringDecorator to get event firing behavior (Selenium 4)
         EventReporter eventListener = new EventReporter();
         driver = new EventFiringDecorator(eventListener).decorate(rawDriver);
 //        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
         goHome();
-//        After opening the application instantiate the homepage
-        homePage = new HomePage((WebDriver) driver);
+    // set the cookie
+        setCookies();
     }
 
     @BeforeMethod
     public void goHome(){
         driver.get("https://the-internet.herokuapp.com/");
+        //        After opening the application instantiate the homepage
+        homePage = new HomePage((WebDriver) driver);
     }
 //    execute
     @AfterClass
@@ -59,5 +62,16 @@ public class BaseTest {
     // method to open multiple windows
     public WindowManager getWidowManager(){
         return new WindowManager(driver);
+    }
+
+    private ChromeOptions getChromeOptions(){
+        ChromeOptions options = new ChromeOptions();
+        //disable infobars
+        options.addArguments("disable-infobars");
+        return options;
+    }
+    private void setCookies(){
+        Cookie cookie = new Cookie.Builder("tau", "123").domain("the-internet.herokuapp.com").build();
+        driver.manage().addCookie(cookie);
     }
 }
