@@ -9,7 +9,8 @@ import static org.testng.Assert.*;
 
 public class LoginTest extends BaseTest {
     @Test
-    public void testSuccessfullLogin(){
+    public void testSuccessfullLogin() throws InterruptedException {
+        Thread.sleep(2000);
        LoginPage loginPage = homePage.clickFormAuthentication();
        loginPage.setUsername("tomsmith");
        loginPage.setPassword("SuperSecretPassword!");
